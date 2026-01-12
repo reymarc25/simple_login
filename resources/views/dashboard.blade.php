@@ -3,101 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Fertilyze</title>
+    <title>Admin Dashboard | SimpleApp</title>
     @vite('resources/css/app.css')
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body class="bg-slate-50 font-['Inter',_sans-serif]">
+<body class="bg-slate-50 font-[sans-serif]">
 
-    <div class="flex min-h-screen">
-        <aside class="w-64 bg-slate-200 text-white hidden md:flex flex-col">
-            <div class="p-6">
-                <span class="text-2xl font-bold tracking-tight text-green-600">Fertilyze</span>
+    <div class="flex h-screen overflow-hidden">
+        
+        <aside class="w-64 bg-slate-600 text-slate-300 flex-shrink-0 hidden md:flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                    <i class="ph-bold ph-leaf text-white text-xl"></i>
+                </div>
+                <span class="text-white font-bold text-xl tracking-tight">FertiLyze</span>
             </div>
-            
-            <nav class="flex-1 px-4 space-y-2">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-green-600 rounded-lg text-white font-medium">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    Dashboard
+
+            <nav class="flex-1 px-4 space-y-2 mt-4">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-green-600 text-white rounded-lg transition-all">
+                    <i class="ph-bold ph-house"></i>
+                    <span class="font-medium">Dashboard</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-green-500 hover:text-white rounded-lg transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    Profile
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+                    <i class="ph-bold ph-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+                    <i class="ph-bold ph-package"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+                    <i class="ph-bold ph-chart-line-up"></i>
+                    <span>Reports</span>
                 </a>
             </nav>
 
             <div class="p-4 border-t border-slate-800">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-lg transition font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Logout
+                    <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-all">
+                        <i class="ph-bold ph-sign-out"></i>
+                        <span>Logout</span>
                     </button>
                 </form>
             </div>
         </aside>
 
-        <div class="flex-1 flex flex-col">
-            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8">
-                <h2 class="text-lg font-semibold text-slate-800">Overview</h2>
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            
+            <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10">
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-slate-500">{{ now()->format('l, d M Y') }}</span>
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
-                        {{ substr(auth()->user()->name, 0, 1) }}
+                    <button class="md:hidden text-slate-600 text-2xl"><i class="ph-bold ph-list"></i></button>
+                    <h2 class="text-slate-800 font-semibold text-lg">Overview</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-bold text-slate-900">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-slate-500 text-capitalize">Administrator</p>
+                    </div>
+                    <div class="w-10 h-10 bg-slate-200 rounded-full border-2 border-white shadow-sm flex items-center justify-center overflow-hidden">
+                        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=0D8ABC&color=fff" alt="avatar">
                     </div>
                 </div>
             </header>
 
-            <main class="p-8">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-bold text-slate-900">Welcome back, {{ auth()->user()->name }}! 👋</h1>
-                    <p class="text-slate-500 mt-1">Here's what's happening with your account today.</p>
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
+                                <i class="ph-bold ph-users-three text-xl"></i>
+                            </div>
+                            <span class="text-green-500 text-xs font-bold">+12%</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium">Total Users</p>
+                        <h3 class="text-2xl font-bold text-slate-900">{{ $totalUsers }}</h3>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center">
+                                <i class="ph-bold ph-shopping-cart text-xl"></i>
+                            </div>
+                            <span class="text-green-500 text-xs font-bold">+5%</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium">Total Sales</p>
+                        <h3 class="text-2xl font-bold text-slate-900">₱45,200</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center">
+                                <i class="ph-bold ph-stack text-xl"></i>
+                            </div>
+                            <span class="text-red-500 text-xs font-bold">-2%</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium">Active Projects</p>
+                        <h3 class="text-2xl font-bold text-slate-900">12</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center">
+                                <i class="ph-bold ph-seal-check text-xl"></i>
+                            </div>
+                            <span class="text-green-500 text-xs font-bold">Stable</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium">System Health</p>
+                        <h3 class="text-2xl font-bold text-slate-900">99.9%</h3>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <p class="text-sm font-medium text-slate-500">Account Security</p>
-                        <p class="text-2xl font-bold text-slate-900 mt-2 text-green-600">Active</p>
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                        <h3 class="font-bold text-slate-900">Recent Users</h3>
+                        <button class="text-blue-600 text-sm font-semibold hover:underline">View All</button>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <p class="text-sm font-medium text-slate-500">Email Verified</p>
-                        <p class="text-2xl font-bold text-slate-900 mt-2">
-                            {{ auth()->user()->email_verified_at ? 'Yes' : 'No' }}
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <p class="text-sm font-medium text-slate-500">Member Since</p>
-                        <p class="text-2xl font-bold text-slate-900 mt-2">{{ auth()->user()->created_at->format('M Y') }}</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 uppercase text-[11px] font-bold tracking-wider">
+                                    <th class="px-6 py-4">User</th>
+                                    <th class="px-6 py-4">Email</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Joined Date</th>
+                                    <th class="px-6 py-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+    @forelse($recentUsers as $user)
+        <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-medium text-slate-900">{{ $user->name }}</td>
+            <td class="px-6 py-4 text-slate-600 text-sm">{{ $user->email }}</td>
+            <td class="px-6 py-4">
+                <span class="px-2 py-1 bg-green-100 text-green-700 text-[11px] font-bold rounded-full">Active</span>
+            </td>
+            <td class="px-6 py-4 text-slate-500 text-sm">{{ $user->created_at->format('M d, Y') }}</td>
+            <td class="px-6 py-4 text-right">
+                <button class="text-slate-400 hover:text-blue-600 transition-colors text-lg">
+                    <i class="ph-bold ph-dots-three"></i>
+                </button>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="5" class="px-6 py-10 text-center text-slate-500 italic">
+                No users registered yet.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="p-6 border-b border-slate-100">
-                        <h3 class="font-bold text-slate-800">Your Account Details</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between py-2 border-b border-slate-50">
-                            <span class="text-slate-500">Full Name</span>
-                            <span class="font-medium text-slate-900">{{ auth()->user()->name }}</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-b border-slate-50">
-                            <span class="text-slate-500">Email Address</span>
-                            <span class="font-medium text-slate-900">{{ auth()->user()->email }}</span>
-                        </div>
-                        <div class="flex justify-between py-2">
-                            <span class="text-slate-500">Role</span>
-                            <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-md">User</span>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
 
 </body>

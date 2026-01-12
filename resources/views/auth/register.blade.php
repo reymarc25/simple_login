@@ -93,9 +93,14 @@
           </div>
 
           <div class="mt-8">
-            <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-[15px] font-bold tracking-wide rounded-md cursor-pointer text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all active:scale-95">
-              Create an account
-            </button>
+           <button type="submit" 
+    class="w-full py-3 px-4 text-[15px] font-bold tracking-wide rounded-xl cursor-pointer text-white bg-blue-600 
+           transition-all duration-300 ease-in-out
+           hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 hover:-translate-y-1
+           focus:outline-none 
+           active:scale-95">
+    create account
+</button>
           </div>
           
           <p class="text-slate-600 text-sm mt-6 text-center">

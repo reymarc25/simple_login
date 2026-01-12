@@ -28,6 +28,7 @@
             <form method="POST" action="{{ route('login') }}" class="md:max-w-md w-full mx-auto">
               @csrf <div class="mb-12">
                 <h3 class="text-4xl font-bold text-slate-900">Sign in</h3>
+                <p class="text-slate-500 mt-2">Welcome back! Please enter your details.</p>
               </div>
 
               <div>
@@ -74,9 +75,14 @@
               </div>
 
               <div class="mt-12">
-                <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-[15px] font-bold tracking-wide rounded-md cursor-pointer text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all active:scale-95">
-                  Sign in
-                </button>
+                <button type="submit" 
+    class="w-full py-3 px-4 text-[15px] font-bold tracking-wide rounded-xl cursor-pointer text-white bg-blue-600 
+           transition-all duration-300 ease-in-out
+           hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 hover:-translate-y-1
+           focus:outline-none 
+           active:scale-95">
+    Sign in
+</button>
                 <p class="text-slate-600 text-sm text-center mt-6">
                     Don't have an account? 
                     <a href="{{ route('register') }}" class="text-blue-600 font-bold hover:underline ml-1 whitespace-nowrap">Register here</a>
